@@ -1,0 +1,36 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Heroes5Lua",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"name": "constant.language.heroes5lua",
+			"match": "\\b[A-Z_]+\\b"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.heroes5lua",
+				"match": "\\b(if|while|for|return)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.heroes5lua",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.heroes5lua",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.heroes5lua"
+}

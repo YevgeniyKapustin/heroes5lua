@@ -1,0 +1,39 @@
+{
+  "name": "heroes5lua",
+  "type": "module",
+  "displayName": "Heroes5LuaSupport",
+  "description": "Provides syntax highlighting and basic language support for Heroes V scripting",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.116.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [{
+      "id": "heroes5lua",
+      "aliases": ["Heroes5Lua", "heroes5lua"],
+      "extensions": [".lua"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "heroes5lua",
+      "scopeName": "source.heroes5lua",
+      "path": "./syntaxes/heroes5lua.tmLanguage.json"
+    }],
+    "configuration": {
+      "type": "object",
+      "title": "Heroes5Lua Settings",
+      "properties": {
+        "heroes5lua.language": {
+          "type": "string",
+          "enum": ["en", "ru"],
+          "default": "en",
+          "description": "Language for documentation in hover and autocomplete."
+        }
+      }
+    }
+  }
+}
