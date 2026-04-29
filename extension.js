@@ -8,6 +8,8 @@ import {
 
 import constants_ru from "./data/constants_ru.js";
 import constants_en from "./data/constants_en.js";
+import functions_en from "./data/functions_en.js";
+import functions_ru from "./data/functions_ru.js";
 
 export function activate(context) {
 
@@ -15,7 +17,8 @@ export function activate(context) {
     const lang = config.get("language");
 
     const constants = lang === "ru" ? constants_ru : constants_en;
-    
+    const functions = lang === "ru" ? functions_ru : functions_en;
+
     console.log("Language selected:", lang);
 
     context.subscriptions.push(
@@ -44,6 +47,12 @@ export function activate(context) {
                 if (constant) {
                     return new Hover(
                         `**${constant.label}** = ${constant.detail}\n\n${constant.documentation}`
+                    );
+                }
+                    const func = functions.find(f => f.label === word);
+                if (func) {
+                    return new Hover(
+                        `**${func.detail}**\n\n${func.documentation}`
                     );
                 }
             }

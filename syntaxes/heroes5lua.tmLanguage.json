@@ -11,6 +11,10 @@
 		{
 			"name": "constant.language.heroes5lua",
 			"match": "\\b[A-Z_]+\\b"
+		},
+		{
+			"name": "function.heroes5lua",
+			"match": "\\b(GetGameVar)\\b"
 		}
 	],
 	"repository": {
