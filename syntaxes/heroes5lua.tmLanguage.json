@@ -1,40 +1,50 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Heroes5Lua",
-	"patterns": [
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Heroes5Lua",
+    "scopeName": "source.heroes5lua",
+
+    "patterns": [
+        { "include": "#comments" },
+        { "include": "#keywords" },
+        { "include": "#strings" },
+        { "include": "#numbers" },
 		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"name": "constant.language.heroes5lua",
-			"match": "\\b[A-Z_]+\\b"
-		},
-		{
-			"name": "function.heroes5lua",
-			"match": "\\b(GetGameVar)\\b"
+			"name": "support.function.heroes5lua",
+			"match": "\\b[A-Z][a-z][a-zA-Z0-9_]*\\b"
 		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.heroes5lua",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.heroes5lua",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.heroes5lua",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": "source.heroes5lua"
+    ],
+
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.heroes5lua",
+                    "match": "--.*$"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.heroes5lua",
+                    "match": "\\b(if|for|while|return|end|function)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.heroes5lua",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.heroes5lua",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "numbers": {
+            "name": "constant.numeric.heroes5lua",
+            "match": "\\b\\d+\\b"
+        }
+    }
 }

@@ -3,7 +3,8 @@ import {
     languages,
     CompletionItem,
     CompletionItemKind,
-    Hover
+    Hover,
+    MarkdownString
 } from 'vscode';
 
 import constants_ru from "./data/constants_ru.js";
@@ -24,13 +25,25 @@ export function activate(context) {
     context.subscriptions.push(
         languages.registerCompletionItemProvider('heroes5lua', {
             provideCompletionItems() {
-                return constants.map(c => {
+                const items = [];
+
+                for (const c of constants) {
                     const item = new CompletionItem(c.label);
                     item.kind = CompletionItemKind.Constant;
                     item.detail = c.detail;
                     item.documentation = c.documentation;
-                    return item;
-                });
+                    items.push(item);
+                }
+
+                for (const f of functions) {
+                    const item = new CompletionItem(f.label);
+                    item.kind = CompletionItemKind.Function;
+                    item.detail = f.detail;
+                    item.documentation = f.documentation;
+                    items.push(item);
+                }
+
+                return items;
             }
         })
     );
@@ -45,15 +58,16 @@ export function activate(context) {
 
                 const constant = constants.find(c => c.label === word);
                 if (constant) {
-                    return new Hover(
-                        `**${constant.label}** = ${constant.detail}\n\n${constant.documentation}`
-                    );
+                    const md = new MarkdownString(`**${constant.label}** = ${constant.detail}\n\n${constant.documentation}`);
+                    md.isTrusted = true;
+                    return new Hover(md);
                 }
-                    const func = functions.find(f => f.label === word);
+
+                const func = functions.find(f => f.label === word);
                 if (func) {
-                    return new Hover(
-                        `**${func.detail}**\n\n${func.documentation}`
-                    );
+                    const md = new MarkdownString(`**${func.detail}**\n\n${func.documentation}`);
+                    md.isTrusted = true;
+                    return new Hover(md);
                 }
             }
         })
