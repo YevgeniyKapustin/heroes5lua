@@ -19,8 +19,12 @@
     "languages": [{
       "id": "heroes5lua",
       "aliases": ["Heroes5Lua", "heroes5lua"],
-      "extensions": [".lua"],
-      "configuration": "./language-configuration.json"
+      "extensions": [".lua", ".h5lua"],
+      "configuration": "./language-configuration.json",
+      "icon": {
+        "light": "images/language_icon.png",
+        "dark": "images/language_icon.png"
+      }
     }],
     "grammars": [{
       "language": "heroes5lua",
